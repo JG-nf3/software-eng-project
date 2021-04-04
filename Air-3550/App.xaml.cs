@@ -1,21 +1,14 @@
-﻿using System;
+﻿using Air_3550.Data;
+using Air_3550.Models;
+using Air_3550.Views;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Air_3550.Views;
-using Air_3550.Models;
 
 namespace Air_3550
 {
@@ -24,8 +17,11 @@ namespace Air_3550
     /// </summary>
     sealed partial class App : Application
     {
-        public static User loggedUser;
-        public static Dictionary<String, String> signUpInfo;
+        // keep track of logged user id throughout the session
+        public static int loggedUserId;
+        
+        // keep track of sign Up info during sign Up
+        public static Dictionary<string, string> signUpInfo;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -35,7 +31,9 @@ namespace Air_3550
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            loggedUser = new User();
+            using var db = new AppDBContext();
+            db.Database.Migrate();
+
             signUpInfo = new Dictionary<string, string>();
         }
 
@@ -85,7 +83,7 @@ namespace Air_3550
         /// </summary>
         /// <param name="sender">The Frame which failed navigation</param>
         /// <param name="e">Details about the navigation failure</param>
-        void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
+        private void OnNavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             throw new Exception("Failed to load Page " + e.SourcePageType.FullName);
         }

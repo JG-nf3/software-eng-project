@@ -10,26 +10,25 @@
 
     <Grid Margin="20,20,20,20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <TextBlock FontSize="48" Grid.ColumnSpan="2" TextAlignment="Center" Margin="0,0,0,20"> Create your Air 3550 Account</TextBlock>
-        <TextBox x:Name="FirstName" Grid.Row="1" PlaceholderText="First Name" Width="200" HorizontalAlignment="Right" Margin="0,0,20,40"/>
-        <TextBox x:Name="LastName"  Grid.Row="1" Grid.Column="1" PlaceholderText="last Name" Width="200" HorizontalAlignment="Left" Margin="20,0,0,40"/>
-        <TextBox x:Name="Email" Grid.Row="2" PlaceholderText="Email address" Width="200" HorizontalAlignment="Right" Margin="0,0,20,40"/>
-        <TextBox x:Name="ConfirmEmail" Grid.Row="2" Grid.Column="1" PlaceholderText="Confirm Email address" Width="200" HorizontalAlignment="Left" Margin="20,0,0,40"/>
-        <PasswordBox x:Name="Password" Grid.Row="3" PlaceholderText="Password" Width="200" HorizontalAlignment="Right"  Margin="0,0,20,60"/>
-        <PasswordBox Grid.Row="3" Grid.Column="1" PlaceholderText="Confirm Password" Width="200" HorizontalAlignment="Left" Margin="20,0,0,60"/>
+        <TextBox x:Name="FirstName" Grid.Row="1" PlaceholderText="First Name" Width="200" HorizontalAlignment="Right" Margin="0,0,20,40" />
+        <TextBox x:Name="LastName"  Grid.Row="1" Grid.Column="1" PlaceholderText="last Name" Width="200" HorizontalAlignment="Left" Margin="20,0,0,40" />
+        <TextBox x:Name="Email" Grid.Row="2" PlaceholderText="Email address" Width="200" HorizontalAlignment="Right" Margin="0,0,20,40" />
+        <TextBox x:Name="ConfirmEmail" Grid.Row="2" Grid.Column="1" PlaceholderText="Confirm Email address" Width="200" HorizontalAlignment="Left" Margin="20,0,0,40" />
+        <PasswordBox x:Name="Password" Grid.Row="3" PlaceholderText="Password" Width="200" HorizontalAlignment="Right"  Margin="0,0,20,60" />
+        <PasswordBox Grid.Row="3" Grid.Column="1" PlaceholderText="Confirm Password" Width="200" HorizontalAlignment="Left" Margin="20,0,0,60" />
 
-        <HyperlinkButton Grid.Row="4" HorizontalAlignment="Center" Content="Sign in instead" Click="GoToSignIn"/>
+        <HyperlinkButton Grid.Row="4" HorizontalAlignment="Center" Content="Sign in instead" Click="GoToSignIn" />
         <Button Content="Next" Grid.Row="4" Grid.Column="2"  HorizontalAlignment="Center" Click="ContinueSignUp"> </Button>
-
     </Grid>
 </Page>

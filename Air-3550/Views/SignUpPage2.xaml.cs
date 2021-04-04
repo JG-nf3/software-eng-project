@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using Air_3550.Models;
+using Air_3550.Services;
+using System;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using static Air_3550.Constants.USState;
-using System.Diagnostics;
-using Air_3550.Models;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -29,7 +19,7 @@ namespace Air_3550.Views
         {
             this.InitializeComponent();
             WelcomeTxt.Text = App.signUpInfo["firstName"] + ", Welcome to Air 3550";
-            for (int i=0; i < StateMap.Count; i++)
+            for (int i = 0; i < StateMap.Count; i++)
             {
                 MenuFlyoutItem item = new MenuFlyoutItem();
                 item.Text = StateMap.Keys.ElementAt(i);
@@ -38,30 +28,61 @@ namespace Air_3550.Views
             }
         }
 
+        /// <summary>
+        /// Create State MenuFly Selection Item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnStateSelect(object sender, RoutedEventArgs e)
         {
             MenuFlyoutItem state = sender as MenuFlyoutItem;
             StateButton.Content = state.Text;
         }
 
+        /// <summary>
+        /// Navigate back to signUp1 page.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GetBack(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(SignUpPage));
         }
 
+        /// <summary>
+        /// Finish SignUp and Clear SignUpInfo. Also Navigates to Sign In Page.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FinishSignUp(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine(App.signUpInfo["firstName"]);
-            Debug.WriteLine(App.signUpInfo["lastName"]);
-            Debug.WriteLine(App.signUpInfo["password"]);
-            Debug.WriteLine(Phone.Text);
-            Debug.WriteLine(BirthDate.Date);
-            Debug.WriteLine(Add1.Text);
-            Debug.WriteLine(Add2.Text);
-            Debug.WriteLine(City.Text);
-            Debug.WriteLine(StateButton.Content);
-            Debug.WriteLine(Zip.Text);
-            Debug.WriteLine("CUSTOMERS");
+            string firstName = App.signUpInfo["firstName"];
+            string lastName = App.signUpInfo["lastName"];
+            string email = App.signUpInfo["email"];
+            string password = App.signUpInfo["password"];
+            string phoneNumber = Phone.Text;
+            string date = BirthDatePicker.Date.Value.DateTime.ToShortDateString();
+
+            Address address = new Address()
+            {
+                Address1 = Add1.Text,
+                Address2 = Add2.Text,
+                City = City.Text,
+                State = StateMap[(string)StateButton.Content],
+                ZipCode = Int32.Parse(Zip.Text)
+            };
+
+            UserService.AddUser(
+                firstName,
+                lastName,
+                email,
+                password,
+                phoneNumber,
+                date,
+                address,
+                UserType.CUSTOMER
+                );
+
             App.signUpInfo.Clear();
             Frame.Navigate(typeof(SignInPage));
         }

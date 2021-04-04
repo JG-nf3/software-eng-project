@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Air_3550.Models
+﻿namespace Air_3550.Models
 {
-    class Address
+    /// <summary>
+    /// POCO for Address.
+    /// </summary>
+    public class Address
     {
-        string Address1 { get; set; }
-#nullable enable
-        string? Address2 { get; set; }
-#nullable disable
-        string City { get; set; }
-        string State { get; set; }
-        int ZipCode { get; set; }
+        public int Id { get; set; }
+        public string Address1 { get; set; }
+        public string Address2 { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public int ZipCode { get; set; }
+
+        public override string ToString()
+        {
+            return base.ToString() + ":\n" + Id + "\n" + Address1 + "\n" + Address2 + "\n" + City + "\n" + State + "\n" + ZipCode;
+        }
     }
 }

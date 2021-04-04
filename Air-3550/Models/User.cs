@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Air_3550.Models
 {
-    enum UserType
+    public enum UserType
     {
         CUSTOMER,
         LOAD_ENGINEER,
@@ -16,15 +12,23 @@ namespace Air_3550.Models
         ADMIN
     }
 
+    /// <summary>
+    /// POCO for User
+    /// </summary>
     public class User
     {
-        string FirstName { get; set; }
-        string LastName { get; set; }
-        string Email { get; set; }
-        string Password { get; set; }
-        int PhoneNumber { get; set; }
-        DateTime BirthDate { get; set; }
-        Address address { get; set; }
-        UserType type { get; set; }
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string PhoneNumber { get; set; }
+        public string BirthDate { get; set; }
+        public UserType Type { get; set; }
+
+        public override string ToString()
+        {
+            return base.ToString() + ":\n" + Id + "\n" + FirstName + "\n" + LastName + "\n" + Email + "\n" + Password + "\n" + BirthDate + "\n" + Type;
+        }
     }
 }
