@@ -119,7 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Constants\USState.cs" />
+    <Compile Include="Constants\AppConstants.cs" />
     <Compile Include="Data\AppDBContext.cs" />
     <Compile Include="Migrations\20210404011807_InitialCreate.cs" />
     <Compile Include="Migrations\20210404011807_InitialCreate.designer.cs">
@@ -129,9 +129,15 @@
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Auth.cs" />
+    <Compile Include="Utils\CredentialManager.cs" />
     <Compile Include="Services\UserService.cs" />
+    <Compile Include="Utils\Email.cs" />
     <Compile Include="Utils\SHA512Generate.cs" />
     <Compile Include="Utils\UniqueID.cs" />
+    <Compile Include="Views\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SignUpPage2.xaml.cs">
       <DependentUpon>SignUpPage2.xaml</DependentUpon>
     </Compile>
@@ -162,6 +168,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\HomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SignUpPage2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

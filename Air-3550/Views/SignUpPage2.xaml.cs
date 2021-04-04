@@ -4,7 +4,8 @@ using System;
 using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using static Air_3550.Constants.USState;
+using static Air_3550.Constants.AppConstants;
+using Air_3550.Utils;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -21,8 +22,10 @@ namespace Air_3550.Views
             WelcomeTxt.Text = App.signUpInfo["firstName"] + ", Welcome to Air 3550";
             for (int i = 0; i < StateMap.Count; i++)
             {
-                MenuFlyoutItem item = new MenuFlyoutItem();
-                item.Text = StateMap.Keys.ElementAt(i);
+                MenuFlyoutItem item = new MenuFlyoutItem
+                {
+                    Text = StateMap.Keys.ElementAt(i)
+                };
                 item.Click += OnStateSelect;
                 StatesFlyout.Items.Insert(i, item);
             }
@@ -72,7 +75,7 @@ namespace Air_3550.Views
                 ZipCode = Int32.Parse(Zip.Text)
             };
 
-            UserService.AddUser(
+            User addedUser = UserService.AddUser(
                 firstName,
                 lastName,
                 email,
@@ -83,6 +86,11 @@ namespace Air_3550.Views
                 UserType.CUSTOMER
                 );
 
+            Email.SendEmail(
+                addedUser.Email, 
+                "Welcome to Air-3550 !",
+                "Hi " + addedUser.FirstName + "\n Your user ID is " + addedUser.Id
+                );
             App.signUpInfo.Clear();
             Frame.Navigate(typeof(SignInPage));
         }

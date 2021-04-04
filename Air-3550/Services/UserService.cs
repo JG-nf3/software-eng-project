@@ -1,9 +1,7 @@
-﻿using Air_3550.Models;
+﻿using Air_3550.Data;
+using Air_3550.Models;
 using Air_3550.Utils;
-
-using System;
-using Air_3550.Data;
-
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Air_3550.Services
@@ -13,6 +11,18 @@ namespace Air_3550.Services
     /// </summary>
     internal class UserService
     {
+        /// <summary>
+        /// Get User by Id.
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns>User object if Id is present, null otherwise</returns>
+        public static User GetUserById(int Id)
+        {
+            using var db = new AppDBContext();
+            User user = db.Users.Find(Id);
+            return user;
+        }
+
         /// <summary>
         ///  Add User to the database.
         /// </summary>
@@ -62,5 +72,42 @@ namespace Air_3550.Services
             Debug.WriteLine("ADDED ADDRESS");
             Debug.WriteLine(addedAddress.ToString());
         }
+        
+        /// <summary>
+        /// Sign in User
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public static bool SignIn(int userId, string password)
+        {
+            using var db = new AppDBContext();
+            var user = db.Users.Find(userId);
+
+            CredentialManager.AddCredential(userId.ToString(), password);
+            Debug.WriteLine("User Credential Saved.");
+
+            Debug.WriteLine("Signed In");
+            Debug.WriteLine(user.ToString());
+
+            return true;
+        }
+
+        /// <summary>
+        /// Auto Sign In user if credential is present in Credential Manager
+        /// Sets Global Logged In User
+        /// </summary>
+        public static void AutoSignIn()
+        {
+            var (userId, password) = CredentialManager.GetCredential();
+            if (userId > 0)
+            {
+                Debug.WriteLine("User Credential found.");
+                App.loggedUser = GetUserById(userId);
+                Debug.WriteLine(App.loggedUser.ToString());
+                Debug.WriteLine("UserId = {0}, Password = {1}",userId, password);
+            }
+        }
+
     }
 }

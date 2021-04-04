@@ -10,7 +10,7 @@
 
     <Grid Margin="20,20,20,20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="200" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -20,7 +20,7 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <TextBlock FontSize="48" Grid.ColumnSpan="2" TextAlignment="Center" Margin="0,0,0,20"> Create your Air 3550 Account</TextBlock>
+        <TextBlock FontSize="48" Grid.ColumnSpan="2" TextAlignment="Center"> Create your Air 3550 Account</TextBlock>
         <TextBox x:Name="FirstName" Grid.Row="1" PlaceholderText="First Name" Width="200" HorizontalAlignment="Right" Margin="0,0,20,40" />
         <TextBox x:Name="LastName"  Grid.Row="1" Grid.Column="1" PlaceholderText="last Name" Width="200" HorizontalAlignment="Left" Margin="20,0,0,40" />
         <TextBox x:Name="Email" Grid.Row="2" PlaceholderText="Email address" Width="200" HorizontalAlignment="Right" Margin="0,0,20,40" />

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Air_3550.Models
+﻿namespace Air_3550.Models
 {
     public enum UserType
     {
