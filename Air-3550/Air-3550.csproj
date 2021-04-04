@@ -129,7 +129,7 @@
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\Auth.cs" />
+    <Compile Include="Utils\Auth.cs" />
     <Compile Include="Utils\CredentialManager.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Utils\Email.cs" />
