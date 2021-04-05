@@ -22,6 +22,8 @@
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
         public string BirthDate { get; set; }
+        public string CreditCardNumber { get; set; }
+
         public UserType Type { get; set; }
 
         public override string ToString()

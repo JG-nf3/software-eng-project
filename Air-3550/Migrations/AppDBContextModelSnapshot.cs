@@ -46,6 +46,8 @@ namespace Air_3550.Migrations
 
                     b.Property<string>("BirthDate");
 
+                    b.Property<string>("CreditCardNumber");
+
                     b.Property<string>("Email");
 
                     b.Property<string>("FirstName");

@@ -15,6 +15,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -26,9 +28,10 @@
         <TextBox x:Name="Email" Grid.Row="2" PlaceholderText="Email address" Width="200" HorizontalAlignment="Right" Margin="0,0,20,40" />
         <TextBox x:Name="ConfirmEmail" Grid.Row="2" Grid.Column="1" PlaceholderText="Confirm Email address" Width="200" HorizontalAlignment="Left" Margin="20,0,0,40" />
         <PasswordBox x:Name="Password" Grid.Row="3" PlaceholderText="Password" Width="200" HorizontalAlignment="Right"  Margin="0,0,20,60" />
-        <PasswordBox Grid.Row="3" Grid.Column="1" PlaceholderText="Confirm Password" Width="200" HorizontalAlignment="Left" Margin="20,0,0,60" />
+        <PasswordBox x:Name="ConfirmPassword" Grid.Row="3" Grid.Column="1" PlaceholderText="Confirm Password" Width="200" HorizontalAlignment="Left" Margin="20,0,0,60" />
+        <TextBlock x:Name="InputWarningText" FontSize="24" Grid.Row="4" Grid.ColumnSpan="2" TextAlignment="Center" Foreground="Red" Visibility="Collapsed"> Please provide valid input </TextBlock>
 
-        <HyperlinkButton Grid.Row="4" HorizontalAlignment="Center" Content="Sign in instead" Click="GoToSignIn" />
-        <Button Content="Next" Grid.Row="4" Grid.Column="2"  HorizontalAlignment="Center" Click="ContinueSignUp"> </Button>
+        <HyperlinkButton Grid.Row="5" HorizontalAlignment="Center" Content="Sign in instead" Click="GoToSignIn" />
+        <Button Name="NextButton" Content="Next" Grid.Row="5" Grid.Column="2"  HorizontalAlignment="Center" Click="ContinueSignUp" />
     </Grid>
 </Page>

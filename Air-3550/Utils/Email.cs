@@ -34,7 +34,7 @@ namespace Air_3550.Utils
                 smtp.Host = "smtp.gmail.com"; //for gmail host  
                 smtp.EnableSsl = true;
                 smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential("air3550customerservice@gmail.com", "LamePassword007.");
+                smtp.Credentials = new NetworkCredential("air3550customerservice@gmail.com", "Hesoyam.007");
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtp.Send(message);
             }

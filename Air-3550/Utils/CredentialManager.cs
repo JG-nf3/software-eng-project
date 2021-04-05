@@ -55,7 +55,6 @@ namespace Air_3550.Utils
             }
             catch (Exception)
             {
-                Debug.WriteLine("GGGGGGGGGGG");
                 return (-1, null);
             }
         }

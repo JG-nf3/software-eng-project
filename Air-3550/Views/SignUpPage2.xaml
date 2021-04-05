@@ -7,32 +7,41 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid HorizontalAlignment="Center">
         <Grid.RowDefinitions>
+            <RowDefinition Height="200" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+
         </Grid.RowDefinitions>
-        <TextBlock x:Name="WelcomeTxt" FontSize="48" TextAlignment="Center" Margin="0,0,0,20" />
-        <TextBox x:Name="Phone" Grid.Row="1" PlaceholderText="Phone Number" Width="200" HorizontalAlignment="Center" Margin="0,0,0,20" />
-        <CalendarDatePicker x:Name="BirthDatePicker" Grid.Row="2" HorizontalAlignment="Center" Margin="0,0,0,20" PlaceholderText="Birth Date" />
-        <RelativePanel Grid.Row="3" HorizontalAlignment="Center" Margin="0,0,0,20">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,20" Name="Ad1">
-                <TextBox Name="Add1" Grid.Row="1" PlaceholderText="Address Line 1" Width="200" Margin="0,0,50,0" />
-                <TextBox Name="Add2" Grid.Row="1" PlaceholderText="Address Line 2" Width="200" />
-            </StackPanel>
-            <TextBox Name="City" Grid.Row="1" PlaceholderText="City" Width="120" Margin="0,0,72,0" RelativePanel.Below="Ad1"  RelativePanel.AlignLeftWith="Ad1" />
-            <Button Name="StateButton" Content="State" Background="Transparent" MinWidth="70" MaxWidth="70" Margin="0,0,50,0" RelativePanel.Below="Ad1" RelativePanel.AlignHorizontalCenterWith="Ad1">
+        <TextBlock x:Name="WelcomeText" FontSize="48" Margin="0,0,0,40" TextAlignment="Center"/>
+        <TextBox x:Name="Phone" Grid.Row="1" PlaceholderText="Phone Number" Width="500" Margin="0,0,0,20" />
+        <CalendarDatePicker x:Name="BirthDatePicker" Grid.Row="2" Width="500" Margin="0,0,0,20" PlaceholderText="Birth Date"/>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,0,0,20">
+            <TextBox Name="Add1" Grid.Row="1" PlaceholderText="Address Line 1" Width="300" Margin="0,0,50,0" />
+            <TextBox Name="Add2" Grid.Row="1" PlaceholderText="Address Line 2" Width="150" />
+        </StackPanel>
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0,0,0,20">
+            <TextBox Name="City" PlaceholderText="City" Width="250" Margin="0,0,25,0" />
+            <Button Name="StateButton" Content="State" Background="DimGray" MinWidth="100" MaxWidth="100" Margin="0,0,25,0">
                 <Button.Flyout>
                     <MenuFlyout Placement="Bottom" x:Name="StatesFlyout">
                     </MenuFlyout>
                 </Button.Flyout>
             </Button>
-            <TextBox Name="Zip" Grid.Row="1" PlaceholderText="Zip Code" Width="90" RelativePanel.Below="Ad1" RelativePanel.AlignRightWith="Ad1" />
-        </RelativePanel>
-        <Button Content="Back" Grid.Row="4" HorizontalAlignment="Center" Click="GetBack" Margin="0,0,400,0"></Button>
-        <Button Content="Finish" Grid.Row="4" HorizontalAlignment="Center" Click="FinishSignUp"  Margin="400,0,0,0"></Button>
+            <TextBox Name="Zip" PlaceholderText="Zip Code" Width="100"/>
+
+        </StackPanel>
+        <TextBox Name="CreditCardNumber" Grid.Row="5" PlaceholderText="Credit Card Number" Width="500" Margin="0,0,0,50" />
+        <TextBlock x:Name="InputWarningText" FontSize="24" Grid.Row="6" Grid.ColumnSpan="2" TextAlignment="Center" Foreground="Red" Visibility="Collapsed"> Please provide valid input</TextBlock>
+        <StackPanel  Grid.Row="7" Orientation="Horizontal">
+            <Button Content="Back" Click="GetBack" Margin="0,0,300,0" Width="100"></Button>
+            <Button Content="Finish" Click="FinishSignUp" Width="100" ></Button>
+        </StackPanel>
     </Grid>
 </Page>

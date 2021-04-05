@@ -121,9 +121,9 @@
     </Compile>
     <Compile Include="Constants\AppConstants.cs" />
     <Compile Include="Data\AppDBContext.cs" />
-    <Compile Include="Migrations\20210404011807_InitialCreate.cs" />
-    <Compile Include="Migrations\20210404011807_InitialCreate.designer.cs">
-      <DependentUpon>20210404011807_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\20210404231108_FirstMigration.cs" />
+    <Compile Include="Migrations\20210404231108_FirstMigration.designer.cs">
+      <DependentUpon>20210404231108_FirstMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\AppDBContextModelSnapshot.cs" />
     <Compile Include="Models\Address.cs" />

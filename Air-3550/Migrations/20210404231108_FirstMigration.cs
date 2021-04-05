@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
+using System.Collections.Generic;
 
 namespace Air_3550.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class FirstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,6 +32,7 @@ namespace Air_3550.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     BirthDate = table.Column<string>(type: "TEXT", nullable: true),
+                    CreditCardNumber = table.Column<string>(type: "TEXT", nullable: true),
                     Email = table.Column<string>(type: "TEXT", nullable: true),
                     FirstName = table.Column<string>(type: "TEXT", nullable: true),
                     LastName = table.Column<string>(type: "TEXT", nullable: true),

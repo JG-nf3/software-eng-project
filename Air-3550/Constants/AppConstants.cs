@@ -5,6 +5,7 @@ namespace Air_3550.Constants
 {
     public class AppConstants
     {
+        // Dictionary of US States with their abbreviate
         public static readonly Dictionary<String, String> StateMap = new Dictionary<string, string>()
         {
             { "AL", "Alabama" },
@@ -60,6 +61,7 @@ namespace Air_3550.Constants
             { "WY", "Wyoming" }
         };
 
-        public static readonly string PROGRAM_NAME = "air3550";
+        // Program Name
+        public static readonly string PROGRAM_NAME = "Air3550";
     }
 }

@@ -11,8 +11,8 @@ using System;
 namespace Air_3550.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20210404011807_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20210404231108_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,6 +46,8 @@ namespace Air_3550.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("BirthDate");
+
+                    b.Property<string>("CreditCardNumber");
 
                     b.Property<string>("Email");
 
