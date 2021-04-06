@@ -13,7 +13,7 @@ namespace Air_3550.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=Air3550.db");
+            optionsBuilder.UseSqlite("Data Source=Air-3550.db");
         }
     }
 }

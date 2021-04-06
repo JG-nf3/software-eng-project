@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net.Mail;
 using System.Net;
+using System.Net.Mail;
 
 namespace Air_3550.Utils
 {
     /// <summary>
     /// Class to help with sending email to customer
     /// </summary>
-    class Email
+    internal class Email
     {
         /// <summary>
         /// Send email to user
@@ -28,17 +24,18 @@ namespace Air_3550.Utils
                 message.From = new MailAddress("air3550customerservice@gmail.com");
                 message.To.Add(new MailAddress(userEmail));
                 message.Subject = messageSubject;
-                message.IsBodyHtml = false; //to make message body as html  
+                message.IsBodyHtml = false; //to make message body as html
                 message.Body = messageBody;
                 smtp.Port = 587;
-                smtp.Host = "smtp.gmail.com"; //for gmail host  
+                smtp.Host = "smtp.gmail.com"; //for gmail host
                 smtp.EnableSsl = true;
                 smtp.UseDefaultCredentials = false;
                 smtp.Credentials = new NetworkCredential("air3550customerservice@gmail.com", "Hesoyam.007");
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtp.Send(message);
             }
-            catch (Exception ) {
+            catch (Exception)
+            {
             }
         }
     }

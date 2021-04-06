@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Security.Credentials;
-using System.Diagnostics;
 
 using static Air_3550.Constants.AppConstants;
 
@@ -13,7 +9,7 @@ namespace Air_3550.Utils
     /// <summary>
     /// Class to manage user Credential.
     /// </summary>
-    class CredentialManager
+    internal class CredentialManager
     {
         /// <summary>
         /// Adds user credential in Windows Credential Manager.
@@ -36,8 +32,8 @@ namespace Air_3550.Utils
                     userName: userName,
                     password: password
                     );
-                    vault.Add(credential);
-            }  
+                vault.Add(credential);
+            }
         }
 
         /// <summary>

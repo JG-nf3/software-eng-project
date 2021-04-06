@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Air_3550.Models;
-
-namespace Air_3550.Services
+﻿namespace Air_3550.Utils
 {
-    class Auth
+    internal class Auth
     {
-        
+        public static bool AuthorizeUser(string userId, string password)
+        {
+            return true;
+        }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Air_3550.Data;
+using Air_3550.Models;
+using Air_3550.Services;
 using Air_3550.Views;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,9 +11,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
-using Air_3550.Models;
-using Air_3550.Services;
-
 namespace Air_3550
 {
     /// <summary>
@@ -21,6 +20,7 @@ namespace Air_3550
     {
         // keep track of logged user throughout the session
         public static User loggedUser;
+
         // keep track of logged user Address throughout the session
         public static Address loggedUserAddress;
 

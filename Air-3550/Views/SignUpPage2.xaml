@@ -17,11 +17,10 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-
         </Grid.RowDefinitions>
-        <TextBlock x:Name="WelcomeText" FontSize="48" Margin="0,0,0,40" TextAlignment="Center"/>
-        <TextBox x:Name="Phone" Grid.Row="1" PlaceholderText="Phone Number" Width="500" Margin="0,0,0,20" />
-        <CalendarDatePicker x:Name="BirthDatePicker" Grid.Row="2" Width="500" Margin="0,0,0,20" PlaceholderText="Birth Date"/>
+        <TextBlock x:Name="WelcomeText" FontSize="48" Margin="0,0,0,40" TextAlignment="Center" />
+        <TextBox x:Name="Phone" Grid.Row="1" PlaceholderText="Phone Number (10 digits without +1)" Width="500" Margin="0,0,0,20" />
+        <CalendarDatePicker x:Name="BirthDatePicker" Grid.Row="2" Width="500" Margin="0,0,0,20" PlaceholderText="Birth Date" />
         <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,0,0,20">
             <TextBox Name="Add1" Grid.Row="1" PlaceholderText="Address Line 1" Width="300" Margin="0,0,50,0" />
             <TextBox Name="Add2" Grid.Row="1" PlaceholderText="Address Line 2" Width="150" />
@@ -34,8 +33,7 @@
                     </MenuFlyout>
                 </Button.Flyout>
             </Button>
-            <TextBox Name="Zip" PlaceholderText="Zip Code" Width="100"/>
-
+            <TextBox Name="ZipCode" PlaceholderText="Zip (5 digits)" Width="100" />
         </StackPanel>
         <TextBox Name="CreditCardNumber" Grid.Row="5" PlaceholderText="Credit Card Number" Width="500" Margin="0,0,0,50" />
         <TextBlock x:Name="InputWarningText" FontSize="24" Grid.Row="6" Grid.ColumnSpan="2" TextAlignment="Center" Foreground="Red" Visibility="Collapsed"> Please provide valid input</TextBlock>

@@ -1,8 +1,7 @@
 ﻿using Air_3550.Utils;
+using System.Collections.Generic;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Popups;
-using System;
 
 namespace Air_3550.Views
 {
@@ -29,7 +28,7 @@ namespace Air_3550.Views
             }
             App.signUpInfo.Clear();
         }
-        
+
         /// <summary>
         /// Adds info in the page to SignUpInfo and Navigates to next page (Still signUp).
         /// </summary>
@@ -37,18 +36,26 @@ namespace Air_3550.Views
         /// <param name="e"></param>
         private void ContinueSignUp(object sender, RoutedEventArgs e)
         {
+            Dictionary<string, string> inputDict = new Dictionary<string, string>() {
+                {"firstName", FirstName.Text.Trim() },
+                {"lastName", LastName.Text.Trim() },
+                {"email",  Email.Text.Trim() },
+                {"password", Password.Password }
+            };
 
-            if (!IsInputValid())
+            if (
+                Email.Text != ConfirmEmail.Text || Password.Password != ConfirmPassword.Password ||
+                !Validation.ValidateInputs(inputDict)
+                )
             {
                 InputWarningText.Visibility = Visibility.Visible;
                 return;
             }
-            App.signUpInfo.Add("firstName", FirstName.Text);
-            App.signUpInfo.Add("lastName", LastName.Text);
-            App.signUpInfo.Add("email", Email.Text);
-            App.signUpInfo.Add("password", SHA512Generate.GenerateSHA512(Password.Password));
-            Frame.Navigate(typeof(SignUpPage2));
+            inputDict["password"] = SHA512Generate.GenerateSHA512(Password.Password);
 
+            App.signUpInfo = inputDict;
+
+            Frame.Navigate(typeof(SignUpPage2));
         }
 
         /// <summary>
@@ -60,22 +67,6 @@ namespace Air_3550.Views
         {
             App.signUpInfo.Clear();
             Frame.Navigate(typeof(SignInPage));
-        }
-
-        /// <summary>
-        /// Validate input
-        /// </summary>
-        /// <returns> true if all inputs are valid, false otherwise</returns>
-        private bool IsInputValid()
-        {
-            if (
-                FirstName.Text.Length > 0 && LastName.Text.Length > 0 && Email.Text.Length > 0 && Password.Password.Length > 0
-                && Email.Text.Contains("@")
-                && Email.Text == ConfirmEmail.Text && Password.Password == ConfirmPassword.Password)
-            {
-                return true;
-            }
-            return false;
         }
     }
 }

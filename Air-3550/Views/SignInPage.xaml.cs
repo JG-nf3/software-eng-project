@@ -1,10 +1,9 @@
-﻿using Windows.UI.Xaml.Controls;
-using Air_3550.Data;
-using System;
-using Air_3550.Services;
-using Air_3550.Models;
-using Windows.UI.Xaml;
+﻿using Air_3550.Services;
 using Air_3550.Utils;
+using System;
+using System.Collections.Generic;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace Air_3550.Views
 {
@@ -30,7 +29,6 @@ namespace Air_3550.Views
         /// <param name="e"></param>
         private void OnForgotCredential(object sender, RoutedEventArgs e)
         {
-
         }
 
         /// <summary>
@@ -38,7 +36,7 @@ namespace Air_3550.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnSignUp(object sender,RoutedEventArgs e)
+        private void OnSignUp(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(SignUpPage));
         }
@@ -50,32 +48,21 @@ namespace Air_3550.Views
         /// <param name="e"></param>
         private void OnSignIn(object sender, RoutedEventArgs e)
         {
-            if (!IsValidSignInInfo())
+            Dictionary<string, string> inputDict = new Dictionary<string, string>()
             {
-                SignInErrorText.Visibility = Visibility.Visible;
-                return;
-            }
-            UserService.SignIn(Int32.Parse(UserId.Text),  UserPassword.Password);
-            Frame.Navigate(typeof(HomePage));
-        }
+                {"userId", UserId.Text},
+                {"password", UserPassword.Password}
+            };
 
-        /// <summary>
-        /// Check if User info is Valid.
-        /// </summary>
-        /// <returns>true if valid, false otherwise.</returns>
-        private bool IsValidSignInInfo()
-        {
             if (
-                UserId.Text.Length == 6 && UserPassword.Password.Length > 0 &&
-                Int32.TryParse(UserId.Text, out int userId)
+                Validation.ValidateInputs(inputDict) &&
+                UserService.SignIn(Int32.Parse(UserId.Text), SHA512Generate.GenerateSHA512(UserPassword.Password))
                 )
             {
-                User user = UserService.FindUserById(userId);
-                if (user != null && user.Password == SHA512Generate.GenerateSHA512(UserPassword.Password)) {
-                    return true;
-                }
+                Frame.Navigate(typeof(HomePage));
+                return;
             }
-            return false;
+            SignInErrorText.Visibility = Visibility.Visible;
         }
     }
 }

@@ -1,12 +1,12 @@
 ﻿using Air_3550.Models;
 using Air_3550.Services;
+using Air_3550.Utils;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-
 using static Air_3550.Constants.AppConstants;
-using Air_3550.Utils;
 
 namespace Air_3550.Views
 {
@@ -17,7 +17,7 @@ namespace Air_3550.Views
     {
         public SignUpPage2()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             WelcomeText.Text = "Hello, " + App.signUpInfo["firstName"] + " !";
             for (int i = 0; i < StateMap.Count; i++)
             {
@@ -58,68 +58,55 @@ namespace Air_3550.Views
         /// <param name="e"></param>
         private void FinishSignUp(object sender, RoutedEventArgs e)
         {
-            if (!IsInputValid())
+            Dictionary<string, string> inputDict = new Dictionary<string, string>() {
+                {"phoneNumber", Phone.Text.Trim() },
+                {"birthDate", BirthDatePicker.Date.Value.DateTime.ToShortDateString() },
+                {"city", City.Text.Trim() },
+                {"address1",  Add1.Text.Trim() },
+                {"address2", Add2.Text.Trim() },
+                {"state", ((string) StateButton.Content).Trim() },
+                {"zipCode", ZipCode.Text.Trim() },
+                {"creditCardNumber", CreditCardNumber.Text.Trim() }
+            };
+
+            // validate input
+            if (!Validation.ValidateInputs(inputDict))
             {
                 InputWarningText.Visibility = Visibility.Visible;
                 return;
             }
 
-            string firstName = App.signUpInfo["firstName"];
-            string lastName = App.signUpInfo["lastName"];
-            string email = App.signUpInfo["email"];
-            string password = App.signUpInfo["password"];
-            string phoneNumber = Phone.Text;
-            string date = BirthDatePicker.Date.Value.DateTime.ToShortDateString();
-            string creditCardNumber = CreditCardNumber.Text;
-
             Address address = new Address()
             {
-                Address1 = Add1.Text,
-                Address2 = Add2.Text,
-                City = City.Text,
-                State = StateMap[(string) StateButton.Content],
-                ZipCode = Int32.Parse(Zip.Text)
+                Address1 = inputDict["address1"],
+                Address2 = inputDict["address2"],
+                City = inputDict["city"],
+                State = StateMap[inputDict["state"]],
+                ZipCode = Int32.Parse(inputDict["zipCode"])
             };
 
+            // Add user and user address
             User addedUser = UserService.AddUser(
-                firstName,
-                lastName,
-                email,
-                password,
-                phoneNumber,
-                date,
-                creditCardNumber,
+                App.signUpInfo["firstName"],
+                App.signUpInfo["lastName"],
+                App.signUpInfo["email"],
+                App.signUpInfo["password"],
+                Int64.Parse(inputDict["phoneNumber"]),
+                inputDict["birthDate"],
+                Int64.Parse(inputDict["creditCardNumber"]),
                 address,
                 UserType.CUSTOMER
                 );
 
+            // send email with user id
             Email.SendEmail(
-                addedUser.Email, 
+                addedUser.Email,
                 "Welcome to Air-3550 !",
                 "Hi " + addedUser.FirstName + "\n Your user ID is " + addedUser.Id
                 );
             App.signUpInfo.Clear();
             ShowAccountCreatedDialog(addedUser.Id);
             Frame.Navigate(typeof(SignInPage));
-        }
-
-        /// <summary>
-        /// Validate user input
-        /// </summary>
-        /// <returns></returns>
-        private bool IsInputValid()
-        {
-            if (
-                int.TryParse(Phone.Text, out _) &&
-                Add1.Text.Length > 0 && City.Text.Length > 0 && (string) StateButton.Content != "State" &&
-                Zip.Text.Length == 5 && int.TryParse(Zip.Text, out _) &&
-
-                int.TryParse(CreditCardNumber.Text, out _)
-                )
-            {
-                return true;
-            }
-            return false;
         }
 
         private async void ShowAccountCreatedDialog(int userId)

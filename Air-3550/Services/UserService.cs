@@ -1,9 +1,6 @@
 ﻿using Air_3550.Data;
 using Air_3550.Models;
 using Air_3550.Utils;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 
 namespace Air_3550.Services
 {
@@ -19,15 +16,8 @@ namespace Air_3550.Services
         /// <returns>User object if Id is present, null otherwise</returns>
         public static User FindUserById(int Id)
         {
-            Debug.WriteLine("HHHHHHHHHHHHHH = " + Id);
             using var db = new AppDBContext();
             User user = db.Users.Find(Id);
-
-            var s = db.Users.ToList();
-            foreach(var x in s)
-            {
-                Debug.WriteLine(x.Password);
-            }
             return user;
         }
 
@@ -43,7 +33,7 @@ namespace Air_3550.Services
         /// <param name="address"></param>
         /// <param name="type"></param>
         /// <returns> Added User. </returns>
-        public static User AddUser(string firstName, string lastName, string email, string password, string phoneNumber, string birthDate, string creditCardNumber, Address address, UserType type)
+        public static User AddUser(string firstName, string lastName, string email, string password, long phoneNumber, string birthDate, long creditCardNumber, Address address, UserType type)
         {
             User addedUser = new User()
             {
@@ -61,10 +51,7 @@ namespace Air_3550.Services
             using var db = new AppDBContext();
             db.Users.Add(addedUser);
             db.SaveChanges();
-
             AddAddress(address);
-            Debug.WriteLine("ADDED USER");
-            Debug.WriteLine(addedUser.ToString());
             return addedUser;
         }
 
@@ -77,45 +64,36 @@ namespace Air_3550.Services
             using var db = new AppDBContext();
             db.Addresses.Add(addedAddress);
             db.SaveChanges();
-
-            Debug.WriteLine("ADDED ADDRESS");
-            Debug.WriteLine(addedAddress.ToString());
         }
-        
+
         /// <summary>
         /// Sign in User
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="password"></param>
-        /// <returns></returns>
+        /// <returns>true if successfully signed in, false otherwise</returns>
         public static bool SignIn(int userId, string password)
         {
             User user = FindUserById(userId);
-
+            if (user == null)
+            {
+                return false;
+            }
             CredentialManager.AddCredential(userId.ToString(), SHA512Generate.GenerateSHA512(password));
-            Debug.WriteLine("User Credential Saved.");
-
-            Debug.WriteLine("Signed In");
-            Debug.WriteLine(user.ToString());
-
             return true;
         }
 
         /// <summary>
-        /// Auto Sign In user if credential is present in Credential Manager
+        /// Auto Sign In user
         /// Sets Global Logged In User
         /// </summary>
         public static void AutoSignIn()
         {
-            var (userId, password) = CredentialManager.GetCredential();
+            var (userId, _) = CredentialManager.GetCredential();
             if (userId > 0)
             {
-                Debug.WriteLine("User Credential found.");
                 App.loggedUser = FindUserById(userId);
-                Debug.WriteLine(App.loggedUser.ToString());
-                Debug.WriteLine("UserId = {0}, Password = {1}",userId, password);
             }
         }
-
     }
 }

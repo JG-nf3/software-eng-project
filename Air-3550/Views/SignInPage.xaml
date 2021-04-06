@@ -10,25 +10,24 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="200"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="200" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
-        <TextBlock FontSize="48" TextAlignment="Center"> Air 3550</TextBlock>
+
+        <TextBlock FontSize="48" TextAlignment="Center"> Air-3550</TextBlock>
         <TextBox x:Name="UserId" Grid.Row="1" PlaceholderText="ID" Width="200" HorizontalAlignment="Center" Margin="0,0,0,40" />
         <PasswordBox x:Name="UserPassword" Grid.Row="2" PlaceholderText="Password" Width="200" HorizontalAlignment="Center"  Margin="0,0,0,60" />
         <TextBlock Name="SignInErrorText" Grid.Row="3" FontSize="18" TextAlignment="Center"  Margin="0,0,0,20" Visibility="Collapsed" Foreground="Red"> Please check you Sign In Info.</TextBlock>
-        <Button Grid.Row="4" HorizontalAlignment="Center" Content="Sign In" Margin="0,0,0,20" Click="OnSignIn"/>
-        <HyperlinkButton Name="ForgotCredLink" Grid.Row="5" HorizontalAlignment="Center" Margin="0,0,0,40" Click="OnForgotCredential" Foreground="Gray"/>
+        <Button Grid.Row="4" HorizontalAlignment="Center" Content="Sign In" Margin="0,0,0,20" Click="OnSignIn" />
+        <HyperlinkButton Name="ForgotCredLink" Grid.Row="5" HorizontalAlignment="Center" Margin="0,0,0,40" Click="OnForgotCredential" Foreground="Gray" />
         <StackPanel  Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBlock Text="No account ?" Margin="0,0,10,0" VerticalAlignment="Center"/>
-            <HyperlinkButton Name="SignUpLink" Click="OnSignUp" Foreground="Orange" VerticalAlignment="Center"/>
+            <TextBlock Text="No account ?" Margin="0,0,10,0" VerticalAlignment="Center" />
+            <HyperlinkButton Name="SignUpLink" Click="OnSignUp" Foreground="Orange" VerticalAlignment="Center" />
         </StackPanel>
-        
     </Grid>
 </Page>
