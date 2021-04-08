@@ -11,7 +11,7 @@ using System;
 namespace Air_3550.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20210406162633_InitialMigration")]
+    [Migration("20210408022357_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
